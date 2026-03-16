@@ -1,0 +1,60 @@
+{% extends "MyInventoryApp/base.html" %}
+
+{% block title %}Add Bottle{% endblock %}
+
+{% block content %}
+<h1>Add Water Bottle</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="sku" class="form-label">SKU</label>
+        <input type="text" class="form-control" id="sku" name="sku">
+    </div>
+
+    <div class="mb-3">
+        <label for="brand" class="form-label">Brand</label>
+        <input type="text" class="form-control" id="brand" name="brand">
+    </div>
+
+    <div class="mb-3">
+        <label for="cost" class="form-label">Cost</label>
+        <input type="number" step="0.01" class="form-control" id="cost" name="cost">
+    </div>
+
+    <div class="mb-3">
+        <label for="size" class="form-label">Size</label>
+        <input type="text" class="form-control" id="size" name="size">
+    </div>
+
+    <div class="mb-3">
+        <label for="mouth_size" class="form-label">Mouth Size</label>
+        <input type="text" class="form-control" id="mouth_size" name="mouth_size">
+    </div>
+
+    <div class="mb-3">
+        <label for="color" class="form-label">Color</label>
+        <input type="text" class="form-control" id="color" name="color">
+    </div>
+
+    <div class="mb-3">
+        <label for="supplier" class="form-label">Supplier</label>
+        <select class="form-select" id="supplier" name="supplier">
+            <option value="" disabled selected>Select a supplier</option>
+            {% for supplier in suppliers %}
+            <option value="{{ supplier.id }}">{{ supplier.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="current_quantity" class="form-label">Current Quantity</label>
+        <input type="number" class="form-control" id="current_quantity" name="current_quantity">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Bottle</button>
+    <a href="/view_bottles" class="btn btn-secondary">Cancel</a>
+
+</form>
+{% endblock %}
